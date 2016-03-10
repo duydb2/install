@@ -1,0 +1,53 @@
+#!/bin/bash 
+# -xe
+
+# Features:
+# - live update project workspace
+# - download & install necessary tools
+
+
+# Check application requirement
+
+# - bash, cmd
+# - python
+# - git
+
+# Init workspace variable
+# http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  TARGET="$(readlink "$SOURCE")"
+  if [[ $TARGET == /* ]]; then
+    echo "SOURCE '$SOURCE' is an absolute symlink to '$TARGET'"
+    SOURCE="$TARGET"
+  else
+    DIR="$( dirname "$SOURCE" )"
+    echo "SOURCE '$SOURCE' is a relative symlink to '$TARGET' (relative to '$DIR')"
+    SOURCE="$DIR/$TARGET" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+  fi
+done
+echo "SOURCE is '$SOURCE'"
+RDIR="$( dirname "$SOURCE" )"
+DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+if [ "$DIR" != "$RDIR" ]; then
+  echo "DIR '$RDIR' resolves to '$DIR'"
+fi
+echo "DIR is '$DIR'"
+
+REPO_URL="https://gitlab.com/baoduyduong0206/myWork.git"
+WORK_DIR="$HOME/work"
+
+# core API
+
+# push install script for gitlab repository
+push_gitlab() {
+  # muUPsW8K-Ehz3gCqdPvE
+  curl https://gitlab.com/api/v3/projects?private_token=muUPsW8K-Ehz3gCqdPvE
+}
+
+# update new install script from gitlab repository
+update_gitlab(){
+  # pull new install script
+  # check current dependencies
+  # install one new
+}
